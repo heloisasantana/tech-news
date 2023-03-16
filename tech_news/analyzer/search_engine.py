@@ -26,4 +26,9 @@ def search_by_date(date):
 
 # Requisito 9
 def search_by_category(category):
-    """Seu código deve vir aqui"""
+    by_category = {"category": {"$regex": f"{category}", "$options": "i"}}
+    news = search_news(by_category)
+    tuples = []
+    for new in news:
+        tuples.append((new["title"], new["url"]))
+    return tuples
